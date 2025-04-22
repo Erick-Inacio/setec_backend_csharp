@@ -1,0 +1,6 @@
+@SetecBackendCSharp_HostAddress = http://localhost:5075
+
+GET {{SetecBackendCSharp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
