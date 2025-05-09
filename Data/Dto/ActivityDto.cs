@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
+namespace SetecBackendCSharp.Data.DTO;
 
-namespace SetecBackendCSharp.Data.Dto;
-
-public partial class ActivityDto
+public partial class ActivityDTO
 {
     public long Id { get; set; }
 
