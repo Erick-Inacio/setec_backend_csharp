@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SetecCSharp.Models.Implementations.Event;
 using SetecCSharp.Models.Implementations.Speaker;
 using SetecCSharp.Models.Implementations.User;
 
@@ -11,6 +12,7 @@ public class MySQLContext : DbContext
 
     public DbSet<UserModel> Users { get; set; }
     public DbSet<SpeakerModel> Speakers { get; set; }
+    public DbSet<EventModel> Events { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

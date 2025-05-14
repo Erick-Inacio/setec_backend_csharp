@@ -1,1 +1,3 @@
 TODO: finalizar o metodo da service de speaker
+TODO: separar os paths de endpoints com "-"
+TODO: Implementar Event

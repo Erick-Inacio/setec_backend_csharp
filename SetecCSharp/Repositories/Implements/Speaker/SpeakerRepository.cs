@@ -17,5 +17,13 @@ namespace SetecCSharp.Repositories.Implements.Speaker
                 .Include(s => s.AdminAproved)
                 .FirstOrDefaultAsync(s => s.Id == id)
                     ?? throw new InvalidOperationException("Palestrante nao encontrado");
+
+        public async Task<SpeakerModel> FindSpeakerByUserId(long userId)
+        {
+            return await _context.Speakers
+                .AsNoTracking()
+                .FirstOrDefaultAsync(s => s.UserId == userId)
+                    ?? throw new InvalidOperationException("Speaker nao encontrado");
+        }
     }
 }

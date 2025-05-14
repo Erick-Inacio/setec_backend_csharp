@@ -47,7 +47,7 @@ namespace SetecCSharp.Middleware
             catch(Exception ex)
             {
                 context.Response.StatusCode = 401;
-                await context.Response.WriteAsync("Token inválido: " + ex.Message);
+                await context.Response.WriteAsync("Exception capturada: " + ex.Message);
             }
         }
     }

@@ -5,6 +5,6 @@ namespace SetecCSharp.Repositories.Implements.Users
 {
     public interface IUserRepository : IRepository<UserModel>
     {
-
+        Task<long> FindByUid(string uid);        
     }
 }

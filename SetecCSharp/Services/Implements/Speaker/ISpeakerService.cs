@@ -4,5 +4,8 @@ using SetecCSharp.Services.Bases.Generic;
 
 namespace SetecCSharp.Services.Implements.Speaker
 {
-    public interface ISpeakerService : IService<SpeakerVO, SpeakerDTO> { }
+    public interface ISpeakerService : IService<SpeakerVO, SpeakerDTO>
+    {
+        Task<SpeakerDTO> FindSpeakerByUserId(long userId);
+    }
 }

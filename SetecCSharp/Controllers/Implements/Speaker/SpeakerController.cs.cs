@@ -15,15 +15,15 @@ namespace SetecCSharp.Controllers.Implements.Speaker
     {
         private readonly ISpeakerService _Service = Service;
 
+
         [ProducesResponseType(200)]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        [HttpGet("getAllPaged")]
+        [HttpGet("getAll")]
         [SwaggerOperation(Summary = "Obtem todos os usuários", Description = "Obtém todos os usuários")]
-        public async Task<ActionResult<CursorPagedDTO<SpeakerDTO>>> GetAllPaged(
-            [FromQuery] long? lastId, [FromQuery] int size = 10)
-            => Ok(await _Service.FindAllPaged(lastId, size));
+        public async Task<ActionResult<CursorPagedDTO<SpeakerDTO>>> GetAll()
+            => Ok(await _Service.FindAll());
 
         [ProducesResponseType(200)]
         [ProducesResponseType(204)]
@@ -59,6 +59,21 @@ namespace SetecCSharp.Controllers.Implements.Speaker
         {
             await _Service.Delete(id);
             return NoContent();
+        }
+
+        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [HttpGet("FindByUserId/{id}")]
+        [SwaggerOperation(Summary = "Busca por user id ", Description = "Busca por user id em speakers")]
+        public async Task<IActionResult> FindSpeakerByUserId([FromRoute] long id)
+            => Ok(await _Service.FindSpeakerByUserId(id));
+
+        public  Task<ActionResult<CursorPagedDTO<SpeakerDTO>>> GetAllPaged(
+        [FromQuery] long? lastId, [FromQuery] int size = 10)
+        {
+            throw new NotImplementedException();
         }
     }
 }

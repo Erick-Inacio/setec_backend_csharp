@@ -3,7 +3,7 @@ CREATE TABLE events (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     initial_date_time DATETIME NOT NULL,
     final_date_time DATETIME NOT NULL,
-    description TEXT
+    name TEXT
 );
 
 -- Criar a tabela de atividades

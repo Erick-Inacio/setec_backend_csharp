@@ -13,8 +13,10 @@ using Serilog;
 using SetecCSharp.db.Context;
 using SetecCSharp.Middleware;
 using SetecCSharp.Repositories.Generic;
+using SetecCSharp.Repositories.Implements.Event;
 using SetecCSharp.Repositories.Implements.Speaker;
 using SetecCSharp.Repositories.Implements.Users;
+using SetecCSharp.Services.Implements.Event;
 using SetecCSharp.Services.Implements.Speaker;
 using SetecCSharp.Services.Implements.Users;
 using SetecCSharp.Services.Independents;
@@ -113,6 +115,10 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 //Speaker
 builder.Services.AddScoped<ISpeakerService, SpeakerService>();
 builder.Services.AddScoped<ISpeakerRepository, SpeakerRepository>();
+
+//Event
+builder.Services.AddScoped<IEventService, EventService>();
+builder.Services.AddScoped<IEventRepository, EventRepository>();
 
 
 // others Config

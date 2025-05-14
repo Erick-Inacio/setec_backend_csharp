@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SetecCSharp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+10b698fe9741e3269015f9aef03f402ef34acc84")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+76e80d85d5425b4e7b91253e66c247b8e82e579a")]
 [assembly: System.Reflection.AssemblyProductAttribute("SetecCSharp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SetecCSharp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

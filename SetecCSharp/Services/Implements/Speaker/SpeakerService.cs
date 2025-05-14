@@ -57,5 +57,9 @@ namespace SetecCSharp.Services.Implements.Speaker
                 ?? throw new InvalidOperationException("Palestrante nao encontrado");
             return _mapper.Map<SpeakerDTO>(speakerWithUser);
         }
+
+        //Personalized Methods
+        public async Task<SpeakerDTO> FindSpeakerByUserId(long userId)
+            => _mapper.Map<SpeakerDTO>(await _repository.FindSpeakerByUserId(userId));
     }
 }
