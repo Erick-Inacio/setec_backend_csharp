@@ -1,4 +1,5 @@
 using Asp.Versioning;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SetecCSharp.Data.Dto.Implementations.Speaker;
 using SetecCSharp.Data.DTO.Base;
@@ -34,6 +35,7 @@ namespace SetecCSharp.Controllers.Implements.Speaker
         public async Task<ActionResult<SpeakerDTO>> Get([FromQuery] long id)
             => Ok(await _Service.FindById(id));
 
+        [AllowAnonymous]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -70,7 +72,8 @@ namespace SetecCSharp.Controllers.Implements.Speaker
         public async Task<IActionResult> FindSpeakerByUserId([FromRoute] long id)
             => Ok(await _Service.FindSpeakerByUserId(id));
 
-        public  Task<ActionResult<CursorPagedDTO<SpeakerDTO>>> GetAllPaged(
+        [HttpGet("getAllPaged")]
+        public Task<ActionResult<CursorPagedDTO<SpeakerDTO>>> GetAllPaged(
         [FromQuery] long? lastId, [FromQuery] int size = 10)
         {
             throw new NotImplementedException();

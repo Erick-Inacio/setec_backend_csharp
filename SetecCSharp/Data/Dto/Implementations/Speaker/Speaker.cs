@@ -8,7 +8,9 @@ namespace SetecCSharp.Data.Dto.Implementations.Speaker
         public string? Company { get; set; }
         public string? Position { get; set; }
         public string? Bio { get; set; }
-        public UserDTO? AdminAproved { get; set; }
+        public bool? IsApproved { get; set; }
+        public DateOnly? DateFatecConclusion { get; set; }
+        public string? AdminUid { get; set; }
         public UserDTO? User { get; set; }
     }
 }

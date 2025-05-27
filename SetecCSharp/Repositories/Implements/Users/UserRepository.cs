@@ -1,10 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using SetecCSharp.Data.Dto.Implementations.Speaker;
 using SetecCSharp.db.Context;
-using SetecCSharp.Models.Implementations.Speaker;
 using SetecCSharp.Models.Implementations.User;
 using SetecCSharp.Repositories.Generic;
-using SetecCSharp.Services.Implements.Users;
 
 namespace SetecCSharp.Repositories.Implements.Users
 {
@@ -26,5 +23,6 @@ namespace SetecCSharp.Repositories.Implements.Users
             return user?.Id
                 ?? throw new InvalidOperationException("User nao encontrado");
         }
+
     }
 }

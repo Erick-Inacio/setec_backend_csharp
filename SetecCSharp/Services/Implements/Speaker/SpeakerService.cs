@@ -2,6 +2,7 @@ using AutoMapper;
 using SetecCSharp.Data.Dto.Implementations.Speaker;
 using SetecCSharp.Data.VO.Implementations.Speaker;
 using SetecCSharp.Models.Implementations.Speaker;
+using SetecCSharp.Models.Implementations.User;
 using SetecCSharp.Repositories.Implements.Speaker;
 using SetecCSharp.Repositories.Implements.Users;
 using SetecCSharp.Services.Generic;
@@ -25,9 +26,10 @@ namespace SetecCSharp.Services.Implements.Speaker
         //Overrides
         public override async Task<SpeakerDTO?> Create(SpeakerVO obj)
         {
-            ArgumentNullException.ThrowIfNull(obj.UserId);
+            var userId = obj.User?.Id;
+            ArgumentNullException.ThrowIfNull(userId);
 
-            var user = await _userRepository.FindById(obj.UserId.Value)
+            var user = await _userRepository.FindById(userId.Value)
                 ?? throw new InvalidOperationException("Usuario não existe no banco");
 
             var speaker = await _repository.Create(_mapper.Map<SpeakerModel>(obj))
@@ -50,10 +52,17 @@ namespace SetecCSharp.Services.Implements.Speaker
         {
             ArgumentNullException.ThrowIfNull(obj);
             ArgumentNullException.ThrowIfNull(obj.Id);
-            var model = await _repository.Update(_mapper.Map<SpeakerModel>(obj))
+            ArgumentNullException.ThrowIfNull(obj.User);
+
+            var model = _mapper.Map<SpeakerModel>(obj);
+            var updatedUser = await _userRepository.Update(_mapper.Map<UserModel>(obj.User));
+
+            model.User = updatedUser;
+
+            var updatedModel = await _repository.Update(model)
                 ?? throw new InvalidOperationException("Palestrante nao encontrado");
 
-            var speakerWithUser = await _repository.FindByIdWithUserAsync(model.Id)
+            var speakerWithUser = await _repository.FindByIdWithUserAsync(updatedModel.Id)
                 ?? throw new InvalidOperationException("Palestrante nao encontrado");
             return _mapper.Map<SpeakerDTO>(speakerWithUser);
         }

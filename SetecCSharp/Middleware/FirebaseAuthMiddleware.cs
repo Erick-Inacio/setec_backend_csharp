@@ -34,21 +34,22 @@ namespace SetecCSharp.Middleware
                 {
                     new(ClaimTypes.NameIdentifier, uid),
                 };
-                
-                if(!string.IsNullOrEmpty(role))
+
+                if (!string.IsNullOrEmpty(role))
                     claims.Add(new Claim(ClaimTypes.Role, role));
 
                 var identity = new ClaimsIdentity(claims, "Firebase");
                 context.User = new ClaimsPrincipal(identity);
 
-                await _next(context);
-                
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 context.Response.StatusCode = 401;
                 await context.Response.WriteAsync("Exception capturada: " + ex.Message);
             }
+
+            await _next(context);
         }
     }
 }

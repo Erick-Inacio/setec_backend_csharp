@@ -10,7 +10,7 @@ namespace SetecCSharp.Repositories.Generic
 
         //Crud Methods
         //getAll
-        public async Task<IEnumerable<T>> FindAll()
+        public virtual async Task<IEnumerable<T>> FindAll()
             => await DataSet.ToListAsync();
 
         //getAllPaged

@@ -4,7 +4,7 @@ using SetecCSharp.Models.Implementations.User;
 
 namespace SetecCSharp.Models.Implementations.Speaker
 {
-    [Table("speakers")]
+    [Table("speaker")]
     public class SpeakerModel : BaseModel
     {
         [Column("company")]
@@ -16,12 +16,19 @@ namespace SetecCSharp.Models.Implementations.Speaker
         [Column("bio")]
         public string? Bio { get; set; }
 
-        [Column("user_id")]
-        public long? UserId { get; set; }
-        public UserModel? AdminAproved { get; set; }
+        [Column("approved")]
+        public bool? IsApproved { get; set; }
 
-        [Column("admin_aproved_uid")]
-        public string? AdminUid { get; set; }
+        [Column("dateFatecConclusion")]
+        public DateOnly? DateFatecConclusion { get; set; }
+
+        [Column("fk_id_user")]
+        public long UserId { get; set; }
+        [ForeignKey("UserId")]
         public UserModel? User { get; set; }
+
+        [Column("fk_Admin_Uid_Approved")]
+        public string? AdminUid { get; set; }
+
     }
 }

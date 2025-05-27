@@ -22,17 +22,16 @@ public class MySQLContext : DbContext
 
         modelBuilder.Entity<SpeakerModel>()
             .HasOne(s => s.User)
-            .WithMany() 
+            .WithMany()
             .HasForeignKey(s => s.UserId)
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<SpeakerModel>()
-            .HasOne(s => s.AdminAproved)
-            .WithMany() 
-            .HasPrincipalKey(u => u.Uid)           
-            .HasForeignKey(s => s.AdminUid)        
-            .OnDelete(DeleteBehavior.Restrict);
-
+                .HasOne<UserModel>() // sem propriedade de navegação
+                .WithMany()
+                .HasPrincipalKey(u => u.Uid)
+                .HasForeignKey(s => s.AdminUid)
+                .OnDelete(DeleteBehavior.Restrict);
 
         base.OnModelCreating(modelBuilder);
     }

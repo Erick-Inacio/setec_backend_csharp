@@ -5,5 +5,13 @@ using SetecCSharp.Models.Implementations.Speaker;
 
 namespace SetecCSharp.Data.Mappings.Implementations.Speaker
 {
-    public class SpeakerMapping : BaseMapper<SpeakerVO, SpeakerModel, SpeakerDTO> { }
+    public class SpeakerMapping : BaseMapper<SpeakerVO, SpeakerModel, SpeakerDTO>
+    {
+        public SpeakerMapping()
+        {
+            CreateMap<SpeakerVO, SpeakerModel>()
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.User!.Id))
+                .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User));
+        }
+    }
 }

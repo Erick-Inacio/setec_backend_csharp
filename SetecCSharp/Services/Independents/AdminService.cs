@@ -18,6 +18,8 @@ namespace SetecCSharp.Services.Independents
                 { "userId", UserId },
                 { "role", role }
             });
+
+            // var token = await FirebaseAuth.DefaultInstance
         }
     }
 }

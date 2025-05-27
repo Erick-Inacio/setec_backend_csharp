@@ -4,7 +4,7 @@ using SetecCSharp.Models.Enums;
 
 namespace SetecCSharp.Models.Implementations.User
 {
-  [Table("users")]
+  [Table("user")]
   public class UserModel : BaseModel
   {
     [Column("uid")]

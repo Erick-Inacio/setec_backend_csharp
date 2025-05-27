@@ -13,6 +13,7 @@ namespace SetecCSharp.Controllers.Implements.Admin
     {
         private readonly AdminService _service = service;
 
+        [Authorize(Roles = "admin")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -25,6 +26,7 @@ namespace SetecCSharp.Controllers.Implements.Admin
             return NoContent();
         }
 
+        [Authorize(Roles = "admin")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
@@ -38,6 +40,7 @@ namespace SetecCSharp.Controllers.Implements.Admin
             return Ok();
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet("debug-token")]
         [SwaggerOperation(Summary = "obtem o token", Description = "uso apenas em developmente")]
 

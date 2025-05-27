@@ -62,6 +62,7 @@ namespace SetecCSharp.Controllers.Implements.Event
             return NoContent();
         }
 
+        [HttpDelete("getAllPaged")]
         public Task<ActionResult<CursorPagedDTO<EventDTO>>> GetAllPaged(
             [FromQuery] long? lastId, [FromQuery] int size = 10
         )

@@ -4,13 +4,13 @@ using SetecCSharp.Models.Base;
 
 namespace SetecCSharp.Models.Implementations.Event
 {
-    [Table("events")]
+    [Table("event")]
     public class EventModel : BaseModel
     {
-        [Column("initial_date_time")]
+        [Column("startAt")]
         public DateTime InitialDateTime { get; set; }
         
-        [Column("final_date_time")]
+        [Column("endAt")]
         public DateTime FinalDateTime { get; set; }
 
         [Column("name")]
