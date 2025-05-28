@@ -1,0 +1,6 @@
+@SetecCSharp_HostAddress =  http://192.168.3.9:8080
+
+GET {{SetecCSharp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

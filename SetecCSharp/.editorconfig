@@ -1,0 +1,6 @@
+[*.cs]
+indent_style = space
+indent_size = 4
+
+# IDE0021: Use block body for constructor
+csharp_style_expression_bodied_constructors = false
