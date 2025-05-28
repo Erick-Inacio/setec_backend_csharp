@@ -22,7 +22,7 @@ namespace SetecCSharp.Models.Implementations.Speaker
         [Column("dateFatecConclusion")]
         public DateOnly? DateFatecConclusion { get; set; }
 
-        [Column("fk_id_user")]
+        [Column("fk_User_id_user")]
         public long UserId { get; set; }
         [ForeignKey("UserId")]
         public UserModel? User { get; set; }

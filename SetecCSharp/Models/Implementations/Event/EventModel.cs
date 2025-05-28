@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SetecCSharp.Models.Base;
+using SetecCSharp.Models.Implementations.Activity;
 
 namespace SetecCSharp.Models.Implementations.Event
 {
@@ -9,12 +10,13 @@ namespace SetecCSharp.Models.Implementations.Event
     {
         [Column("startAt")]
         public DateTime InitialDateTime { get; set; }
-        
+
         [Column("endAt")]
         public DateTime FinalDateTime { get; set; }
 
         [Column("name")]
         public string? Name { get; set; }
-        // public List<ActivityModel> Activities   new ArrayList<>();
+
+        public ICollection<ActivityModel> Activities { get; set; } = [];
     }
 }
