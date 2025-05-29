@@ -26,8 +26,8 @@ public class MySQLContext : DbContext
 
         modelBuilder.Entity<SpeakerModel>()
             .HasOne(s => s.User)
-            .WithMany()
-            .HasForeignKey(s => s.UserId)
+            .WithOne()
+            .HasForeignKey<SpeakerModel>(s => s.Id)
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<SpeakerModel>()

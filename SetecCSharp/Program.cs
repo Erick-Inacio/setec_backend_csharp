@@ -13,11 +13,15 @@ using Serilog;
 using SetecCSharp.db.Context;
 using SetecCSharp.Middleware;
 using SetecCSharp.Repositories.Generic;
+using SetecCSharp.Repositories.Implements.Activity;
 using SetecCSharp.Repositories.Implements.Event;
 using SetecCSharp.Repositories.Implements.Speaker;
+using SetecCSharp.Repositories.Implements.TypeActivity;
 using SetecCSharp.Repositories.Implements.Users;
+using SetecCSharp.Services.Implements.Activity;
 using SetecCSharp.Services.Implements.Event;
 using SetecCSharp.Services.Implements.Speaker;
+using SetecCSharp.Services.Implements.TypeActivity;
 using SetecCSharp.Services.Implements.Users;
 using SetecCSharp.Services.Independents;
 
@@ -120,6 +124,14 @@ builder.Services.AddScoped<ISpeakerRepository, SpeakerRepository>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 
+//Event
+builder.Services.AddScoped<ITypeActivityService, TypeActivityService>();
+builder.Services.AddScoped<ITypeActivityRepository, TypeActivityRepository>();
+
+//Activity
+builder.Services.AddScoped<IActivityService, ActivityService>();
+builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
+
 
 // others Config
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
@@ -151,8 +163,8 @@ app.UseRewriter(option);
 // Configurando middleware firebaseAuth e middleware de autenticação
 app.UseMiddleware<ExceptionMiddleware>();
 
-app.UseAuthentication();
 app.UseMiddleware<FirebaseAuthMiddleware>();
+app.UseAuthentication();
 
 app.UseAuthorization();
 

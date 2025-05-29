@@ -72,7 +72,7 @@ namespace SetecCSharp.Controllers.Implements.Speaker
         public async Task<IActionResult> FindSpeakerByUserId([FromRoute] long id)
             => Ok(await _Service.FindSpeakerByUserId(id));
 
-        [HttpGet("getAllPaged")]
+        [NonAction]
         public Task<ActionResult<CursorPagedDTO<SpeakerDTO>>> GetAllPaged(
         [FromQuery] long? lastId, [FromQuery] int size = 10)
         {

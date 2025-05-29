@@ -11,28 +11,41 @@ namespace SetecCSharp.Services.Implements.Users
     public class UserService : GenericService<UserVO, UserModel, UserDTO>, IUserService
     {
         private readonly IUserRepository _repository;
-        private readonly IMapper _mapper;
 
         public UserService(IUserRepository repository, IMapper mapper) : base(repository, mapper)
         {
             _repository = repository;
-            _mapper = mapper;
+            // _mapper = mapper;
         }
 
         public override async Task<UserDTO?> Create(UserVO obj)
         {
-            var user = await _repository.Create(_mapper.Map<UserModel>(obj))
-                ?? throw new InvalidOperationException("Falha ao criar usuario");
+            UserModel user = null!;
+            try
+            {
+                user = await _repository.Create(_mapper.Map<UserModel>(obj))
+                    ?? throw new InvalidOperationException("Falha ao criar usuario");
 
-            await FirebaseAuth.DefaultInstance
-                .SetCustomUserClaimsAsync(user.Uid, new Dictionary<string, object>
+                //! descomentar apos teste
+                await FirebaseAuth.DefaultInstance.SetCustomUserClaimsAsync(user.Uid, new Dictionary<string, object>
+                    {
+                        { "userId", user.Id },
+                        { "role", user.Role.ToString() },
+                    });
+
+                return _mapper.Map<UserDTO>(user);
+            }
+            catch (Exception)
+            {
+                if (user != null)
                 {
-                    { "userId", user.Id },
-                    { "role", user.Role.ToString() },
-                });
-            
-            return _mapper.Map<UserDTO>(user);
+                    await _repository.Delete(user.Id);
+                    await FirebaseAuth.DefaultInstance.DeleteUserAsync(user.Uid);
+                }
+                throw;
+            }
         }
+
     }
 }
 

@@ -14,13 +14,11 @@ namespace SetecCSharp.Services.Implements.Activity
     {
 
         private readonly MySQLContext _context;
-        private readonly IMapper _mapper;
 
         public ActivityService(IActivityRepository repository, IMapper mapper, MySQLContext context)
             : base(repository, mapper)
         {
             _context = context;
-            _mapper = mapper;
         }
 
         public override async Task<ActivityDTO?> FindById(long id)

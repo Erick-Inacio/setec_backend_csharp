@@ -11,33 +11,27 @@ namespace SetecCSharp.Services.Implements.Speaker
 {
     public class SpeakerService : GenericService<SpeakerVO, SpeakerModel, SpeakerDTO>, ISpeakerService
     {
-
-        private readonly IUserRepository _userRepository;
         private readonly ISpeakerRepository _repository;
-        private readonly IMapper _mapper;
+        private readonly IUserRepository _userRepository;
         public SpeakerService(ISpeakerRepository repository, IMapper mapper,
             IUserRepository userRepository) : base(repository, mapper)
         {
             _userRepository = userRepository;
             _repository = repository;
-            _mapper = mapper;
         }
 
         //Overrides
         public override async Task<SpeakerDTO?> Create(SpeakerVO obj)
         {
-            var userId = obj.User?.Id;
-            ArgumentNullException.ThrowIfNull(userId);
+            ArgumentNullException.ThrowIfNull(obj.User);
 
-            var user = await _userRepository.FindById(userId.Value)
-                ?? throw new InvalidOperationException("Usuario não existe no banco");
+            var modelObj = _mapper.Map<SpeakerModel>(obj);
 
-            var speaker = await _repository.Create(_mapper.Map<SpeakerModel>(obj))
-                ?? throw new InvalidOperationException("Falha ao criar palestrante");
-
-            var speakerWithUser = await _repository.FindByIdWithUserAsync(speaker.Id)
+            var model = await _repository.Create(modelObj)
                 ?? throw new InvalidOperationException("Palestrante nao encontrado");
 
+            var speakerWithUser = await _repository.FindByIdWithUserAsync(model.Id)
+                ?? throw new InvalidOperationException("Palestrante nao encontrado");
             return _mapper.Map<SpeakerDTO>(speakerWithUser);
         }
 

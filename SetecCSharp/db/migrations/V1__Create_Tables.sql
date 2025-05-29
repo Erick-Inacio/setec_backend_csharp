@@ -50,14 +50,14 @@ DROP TABLE IF EXISTS `attend`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `attend` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `fk_id_subscription` bigint DEFAULT NULL,
+  `fk_subscription` bigint DEFAULT NULL,
   `fk_date` bigint NOT NULL,
   `fk_user` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_id_subscription` (`fk_id_subscription`),
+  KEY `fk_id_subscription` (`fk_subscription`),
   KEY `fk_date` (`fk_date`),
   KEY `fk_user` (`fk_user`),
-  CONSTRAINT `attend_ibfk_1` FOREIGN KEY (`fk_id_subscription`) REFERENCES `subscription` (`id`),
+  CONSTRAINT `attend_ibfk_1` FOREIGN KEY (`fk_subscription`) REFERENCES `subscription` (`id`),
   CONSTRAINT `attend_ibfk_2` FOREIGN KEY (`fk_date`) REFERENCES `date` (`id`),
   CONSTRAINT `attend_ibfk_3` FOREIGN KEY (`fk_user`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -143,19 +143,17 @@ DROP TABLE IF EXISTS `speaker`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `speaker` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL,
   `company` varchar(100) DEFAULT NULL,
   `position` varchar(100) DEFAULT NULL,
   `bio` text,
   `approved` tinyint(1) DEFAULT NULL,
-  `fk_User_id_user` bigint NOT NULL,
-  `fk_Admin_Uid_Approved` varchar(255) DEFAULT NULL,
+  `fk_admin` varchar(255) DEFAULT NULL,
   `dateFatecConclusion` date DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_User_id_user` (`fk_User_id_user`),
-  KEY `fk_Admin_Uid_Approved` (`fk_Admin_Uid_Approved`),
-  CONSTRAINT `speaker_ibfk_1` FOREIGN KEY (`fk_User_id_user`) REFERENCES `user` (`id`),
-  CONSTRAINT `speaker_ibfk_2` FOREIGN KEY (`fk_Admin_Uid_Approved`) REFERENCES `user` (`uid`)
+  KEY `speaker_ibfk_2_idx` (`fk_admin`),
+  CONSTRAINT `speaker_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`),
+  CONSTRAINT `speaker_ibfk_2` FOREIGN KEY (`fk_admin`) REFERENCES `user` (`uid`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -266,4 +264,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-28 15:13:17
+-- Dump completed on 2025-05-28 21:33:19

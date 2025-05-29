@@ -3,7 +3,8 @@ ngrok http --url=helpful-baboon-separately.ngrok-free.app 192.168.3.9:8080
 TODO: finalizar o metodo da service de speaker
 TODO: separar os paths de endpoints com "-"
 TODO: Implementar Event
+TODO: entender pq activity inseriu no banco mesmo com o id do firebase expirado
 
 
 
-Implementation order: Model > Registrar no MySQLContext >VO > DTO > Converter > Repository > Service > Controller
+Implementation order: Model > Registrar no MySQLContext >VO > DTO > Converter > Repository > Service > Controller > Injetar na program
