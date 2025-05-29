@@ -8,11 +8,21 @@ using SetecCSharp.Services.Bases.Generic;
 
 namespace SetecCSharp.Services.Generic
 {
-    public class GenericService<VO, M, DTO>(
-      IRepository<M> _repository,
-      IMapper _mapper
-    ) : IService<VO, DTO> where M : BaseModel where DTO : BaseDTO where VO : BaseVO
+    public class GenericService<VO, M, DTO> : IService<VO, DTO> where M
+        : BaseModel where DTO : BaseDTO where VO : BaseVO
     {
+        private readonly IRepository<M> _repository;
+        protected readonly IMapper _mapper;
+
+        public GenericService(
+          IRepository<M> repository,
+          IMapper mapper
+    )
+        {
+            _repository = repository;
+            _mapper = mapper;
+        }
+
         //Crud Methods
         //getAll
         public async Task<IEnumerable<DTO>> FindAll()

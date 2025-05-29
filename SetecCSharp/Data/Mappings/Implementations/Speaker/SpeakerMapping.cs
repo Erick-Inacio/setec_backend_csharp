@@ -10,7 +10,7 @@ namespace SetecCSharp.Data.Mappings.Implementations.Speaker
         public SpeakerMapping()
         {
             CreateMap<SpeakerVO, SpeakerModel>()
-                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.User!.Id))
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.User!.Id))
                 .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User));
         }
     }

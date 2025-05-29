@@ -6,7 +6,7 @@ namespace SetecCSharp.Repositories.Generic
 {
     public class GenericRepository<T>(MySQLContext _context) : IRepository<T> where T : BaseModel
     {
-        private DbSet<T> DataSet => _context.Set<T>();
+        protected DbSet<T> DataSet => _context.Set<T>();
 
         //Crud Methods
         //getAll
@@ -35,7 +35,7 @@ namespace SetecCSharp.Repositories.Generic
             => await DataSet.FindAsync(id);
 
         //Create
-        public async Task<T?> Create(T obj)
+        public virtual async Task<T?> Create(T obj)
         {
             try
             {

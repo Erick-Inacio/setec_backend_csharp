@@ -1,4 +1,4 @@
-INSERT INTO speaker (company, position, bio, fk_id_user) VALUES
+INSERT INTO speaker (company, position, bio, id) VALUES
 ('Empresa F', 'Arquiteto', 'Bio do Usuário 16', 16),
 ('Empresa G', 'Mentor', 'Bio do Usuário 17', 17),
 ('Empresa H', 'Professor', 'Bio do Usuário 18', 18),
