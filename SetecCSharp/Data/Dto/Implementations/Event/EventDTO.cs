@@ -9,5 +9,6 @@ namespace SetecCSharp.Data.DTO.Implementations.Event
         public DateTime FinalDateTime { get; set; }
         public string? Name { get; set; }
         public List<ActivityDTO>? Activities { get; set; }
+        public bool? IsCurrent { get; set; }
     }
 }

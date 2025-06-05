@@ -12,13 +12,11 @@ namespace SetecCSharp.Services.Implements.TypeActivity
     public class TypeActivityService : GenericService<TypeActivityVO, TypeActivityModel,
             TypeActivityDTO>, ITypeActivityService
     {
-        private readonly IMapper _mapper;
         private readonly MySQLContext _context;
 
         public TypeActivityService(ITypeActivityRepository repository, IMapper mapper, MySQLContext context)
             : base(repository, mapper)
         {
-            _mapper = mapper;
             _context = context;
         }
 
@@ -28,7 +26,6 @@ namespace SetecCSharp.Services.Implements.TypeActivity
                 throw new ArgumentException("Id inválido", nameof(id));
 
             var model = await _context.TypeActivities
-                .Include(t => t.Activities)
                 .FirstOrDefaultAsync(t => t.Id == id);
 
             ArgumentNullException.ThrowIfNull(model);

@@ -27,11 +27,11 @@ namespace SetecCSharp.Services.Implements.Users
                     ?? throw new InvalidOperationException("Falha ao criar usuario");
 
                 //! descomentar apos teste
-                await FirebaseAuth.DefaultInstance.SetCustomUserClaimsAsync(user.Uid, new Dictionary<string, object>
-                    {
-                        { "userId", user.Id },
-                        { "role", user.Role.ToString() },
-                    });
+                // await FirebaseAuth.DefaultInstance.SetCustomUserClaimsAsync(user.Uid, new Dictionary<string, object>
+                //     {
+                //         { "userId", user.Id },
+                //         { "role", user.Role.ToString() },
+                //     });
 
                 return _mapper.Map<UserDTO>(user);
             }
@@ -40,7 +40,7 @@ namespace SetecCSharp.Services.Implements.Users
                 if (user != null)
                 {
                     await _repository.Delete(user.Id);
-                    await FirebaseAuth.DefaultInstance.DeleteUserAsync(user.Uid);
+                    // await FirebaseAuth.DefaultInstance.DeleteUserAsync(user.Uid);
                 }
                 throw;
             }

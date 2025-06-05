@@ -11,15 +11,14 @@ namespace SetecCSharp.Services.Implements.Event
 {
     public class EventService : GenericService<EventVO, EventModel, EventDTO>, IEventService
     {
-
-        private readonly IMapper _mapper;
         private readonly MySQLContext _context;
+        private readonly IEventRepository _repository;
 
         public EventService(IEventRepository repository, IMapper mapper, MySQLContext context)
             : base(repository, mapper)
         {
             _context = context;
-            _mapper = mapper;
+            _repository = repository;
         }
 
         public override async Task<EventDTO?> FindById(long id)
@@ -28,7 +27,6 @@ namespace SetecCSharp.Services.Implements.Event
                 throw new ArgumentException("Id inválido", nameof(id));
 
             var model = await _context.Events
-                .Include(e => e.Activities)
                 .FirstOrDefaultAsync(e => e.Id == id);
 
             ArgumentNullException.ThrowIfNull(model);
@@ -36,5 +34,17 @@ namespace SetecCSharp.Services.Implements.Event
             return _mapper.Map<EventDTO>(model);
 
         }
+
+        // public async Task<CurrentEventDTO?> FindByIdCurrentEvent(long id)
+        // {
+        //     if (id <= 0)
+        //         throw new ArgumentException("Id inválido", nameof(id));
+
+        //     var model = await _repository.FindByIdCurrentEvent(id);
+
+        //     ArgumentNullException.ThrowIfNull(model);
+
+        //     return _mapper.Map<CurrentEventDTO>(model);
+        // }
     }
 }

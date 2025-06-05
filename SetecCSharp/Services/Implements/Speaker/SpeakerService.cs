@@ -64,5 +64,7 @@ namespace SetecCSharp.Services.Implements.Speaker
         //Personalized Methods
         public async Task<SpeakerDTO> FindSpeakerByUserId(long userId)
             => _mapper.Map<SpeakerDTO>(await _repository.FindSpeakerByUserId(userId));
+
+        
     }
 }

@@ -71,5 +71,26 @@ namespace SetecCSharp.Controllers.Implements.Activity
         {
             throw new NotImplementedException();
         }
+
+        //Personalised Methods
+        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [HttpGet("getByEventId/id={eventId}")]
+        [SwaggerOperation(Summary = "Obtem uma lista de atividade",
+            Description = "Obtém uma lista de atividade por evento")]
+        public async Task<ActionResult<ActivityDTO>> GetByEventId([FromRoute] long eventId)
+            => Ok(await _Service.FindActivitiesByEvent(eventId));
+
+        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [HttpGet("getByTypeId/id={typeId}")]
+        [SwaggerOperation(Summary = "Obtem uma lista de atividade",
+        Description = "Obtém uma lista de atividade por tipo")]
+        public async Task<ActionResult<ActivityDTO>> GetByType([FromRoute] long typeId)
+        => Ok(await _Service.FindActivitiesByType(typeId));
     }
 }

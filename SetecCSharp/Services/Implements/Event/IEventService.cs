@@ -5,5 +5,7 @@ using SetecCSharp.Services.Bases.Generic;
 namespace SetecCSharp.Services.Implements.Event
 {
     public interface IEventService : IService<EventVO, EventDTO>
-    { }
+    {
+        // Task<CurrentEventDTO?> FindByIdCurrentEvent(long id);
+    }
 }

@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using SetecCSharp.Models.Base;
+using SetecCSharp.Models.Implementations.Date;
 using SetecCSharp.Models.Implementations.Event;
 using SetecCSharp.Models.Implementations.TypeActivity;
 
@@ -29,5 +30,7 @@ namespace SetecCSharp.Models.Implementations.Activity
 
         [Column("qtdeVagas")]
         public int? QtdeVagas { get; set; }
+
+        public IEnumerable<DateModel>? Dates { get; set; }
     }
 }

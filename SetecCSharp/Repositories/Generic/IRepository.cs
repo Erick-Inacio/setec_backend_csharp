@@ -10,6 +10,5 @@ namespace SetecCSharp.Repositories.Generic
         Task<T?> Create(T obj);
         Task<T?> Update(T obj);
         Task Delete(long id);
-        Task<bool> Exists(long id);
     }
 }

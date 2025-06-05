@@ -84,8 +84,5 @@ namespace SetecCSharp.Repositories.Generic
                 throw;
             }
         }
-
-        //Pesonalized methods
-        public async Task<bool> Exists(long id) => await DataSet.AnyAsync(p => p.Id.Equals(id));
     }
 }

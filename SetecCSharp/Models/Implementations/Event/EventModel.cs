@@ -17,6 +17,10 @@ namespace SetecCSharp.Models.Implementations.Event
         [Column("name")]
         public string? Name { get; set; }
 
+        [Column("isCurrent")]
+        public bool? IsCurrent { get; set; }
+
+        [NotMapped]
         public ICollection<ActivityModel> Activities { get; set; } = [];
     }
 }

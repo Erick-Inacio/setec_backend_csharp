@@ -14,11 +14,13 @@ using SetecCSharp.db.Context;
 using SetecCSharp.Middleware;
 using SetecCSharp.Repositories.Generic;
 using SetecCSharp.Repositories.Implements.Activity;
+using SetecCSharp.Repositories.Implements.Date;
 using SetecCSharp.Repositories.Implements.Event;
 using SetecCSharp.Repositories.Implements.Speaker;
 using SetecCSharp.Repositories.Implements.TypeActivity;
 using SetecCSharp.Repositories.Implements.Users;
 using SetecCSharp.Services.Implements.Activity;
+using SetecCSharp.Services.Implements.Date;
 using SetecCSharp.Services.Implements.Event;
 using SetecCSharp.Services.Implements.Speaker;
 using SetecCSharp.Services.Implements.TypeActivity;
@@ -132,6 +134,9 @@ builder.Services.AddScoped<ITypeActivityRepository, TypeActivityRepository>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
 builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
 
+//Date
+builder.Services.AddScoped<IDateService, DateService>();
+builder.Services.AddScoped<IDateRepository, DateRepository>();
 
 // others Config
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));

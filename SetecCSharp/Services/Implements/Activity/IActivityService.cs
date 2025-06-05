@@ -4,5 +4,9 @@ using SetecCSharp.Services.Bases.Generic;
 
 namespace SetecCSharp.Services.Implements.Activity
 {
-    public interface IActivityService : IService<ActivityVO, ActivityDTO> { }
+    public interface IActivityService : IService<ActivityVO, ActivityDTO>
+    {
+        Task<IEnumerable<ActivityDTO>> FindActivitiesByEvent(long eventId);
+        Task<IEnumerable<ActivityDTO>> FindActivitiesByType(long eventId);
+    }
 }

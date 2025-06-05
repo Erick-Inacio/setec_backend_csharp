@@ -10,9 +10,7 @@ namespace SetecCSharp.Data.Mappings.Implementations.Activity
         public ActivityMapping()
         {
             CreateMap<ActivityModel, ActivityDTO>()
-                .ForMember(dest => dest.TypeActivityName, opt => opt.MapFrom(src => src.TypeActivity!.Name))
-                .ForMember(dest => dest.EventName, opt => opt.MapFrom(src => src.Event!.Name));
-
+                .ForMember(dest => dest.TypeActivityId, opt => opt.MapFrom(src => src.TypeActivityId));
         }
     }
 }

@@ -14,11 +14,13 @@ namespace SetecCSharp.Services.Implements.Activity
     {
 
         private readonly MySQLContext _context;
+        private readonly IActivityRepository _repository;
 
         public ActivityService(IActivityRepository repository, IMapper mapper, MySQLContext context)
             : base(repository, mapper)
         {
             _context = context;
+            _repository = repository;
         }
 
         public override async Task<ActivityDTO?> FindById(long id)
@@ -63,6 +65,26 @@ namespace SetecCSharp.Services.Implements.Activity
             await _context.Entry(model).Reference(a => a.Event).LoadAsync();
 
             return _mapper.Map<ActivityDTO>(model);
+        }
+
+        public async Task<IEnumerable<ActivityDTO>> FindActivitiesByEvent(long eventId)
+        {
+            if (eventId <= 0)
+                throw new ArgumentException("Id inválido", nameof(eventId));
+
+            var activities = await _repository.GetActivitiesByEvent(eventId);
+
+            return _mapper.Map<IEnumerable<ActivityDTO>>(activities);
+        }
+        
+        public async Task<IEnumerable<ActivityDTO>> FindActivitiesByType(long typeActivityId)
+        {
+            if (typeActivityId <= 0)
+                throw new ArgumentException("Id inválido", nameof(typeActivityId));
+
+            var activities = await _repository.GetActivitiesByType(typeActivityId);
+
+            return _mapper.Map<IEnumerable<ActivityDTO>>(activities);
         }
     }
 }
